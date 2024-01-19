@@ -23,7 +23,10 @@ class ProductViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         """ GET /api/products/<str:id> """
-        pass
+        product = Product.objects.get(id=pk)
+        serializer = ProductSerializer(product)
+
+        return Response(serializer.data)
 
     def update(self, request, pk=None):
         """ PUT `/api/products/<str:id>` """
