@@ -111,3 +111,26 @@ then inside the container create the new app:
 ```bash
 python manage.py startapp products
 ```
+
+---
+### Models & Serialization
+[models.py](./admin/products/models.py)
+```python
+class Product(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
+    likes = models.PositiveIntegerField(default=0)
+
+class User(models.Model):
+    pass
+```
+#### Generate Migrations
+Inside the docker container run
+```bash
+python manage.py makemigrations
+```
+
+#### Run Migrations
+```bash
+python manage.py migrate
+```
