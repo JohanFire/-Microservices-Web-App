@@ -22,3 +22,18 @@ Run the project by getting inside the directory admin and:
 ```bash
 python manage.py runserver
 ```
+
+### Create Docker files
+#### Dockerfile
+```dockerfile
+FROM python:3.10.9
+ENV PYTHONNUNBUFFERED 1
+# this env is useful to get logs so we can see whatever is happening
+WORKDIR /app
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+COPY . /app/
+# Copy all the files to the app directory
+
+CMD python manage.py runserver 0.0.0.0:8000
+```
